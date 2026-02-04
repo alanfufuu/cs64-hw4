@@ -200,7 +200,7 @@ doSwap:
         li $t0, 0 #x
         li $t1, 1 # y
         li $t6, 11
-        la $7, myArray
+        la $t7, myArray
 loop:
         bge $t0, $t6, end_loop
 

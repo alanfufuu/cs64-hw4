@@ -14,18 +14,17 @@ main:
 
 	li $v0, 5
 	syscall
-	sll $t1, $v0, 3
+	move $t1, $v0
+
+	mult $t1, $t3
+	mflo $t1
 
 	li $v0, 5
 	syscall
-	move $t2, $v0
+	sll $t2, $v0, 6
 
 	sub $a0, $t0, $t1
 	sll $a0, $a0, 4
-
-	li $t3, 7
-	mult $t2, $t3
-	mflo $t2
 
 	add $a0, $a0, $t2
 
