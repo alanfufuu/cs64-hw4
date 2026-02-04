@@ -45,48 +45,41 @@ main:
 	syscall
 	move $t2, $v0
 
+	srl $t3, $t0, 31
+	beq $t3, $zero, one
+	nor $t0, $t0, zero
+	addiu $t0, $t0, 1
+	
+one:
+	srl $t3, $t1, 31
+	beq $t3, $zero, two
+	nor $t1, $t1, $zero
+	addiu $t1, $t1, 1
+two:
+	srl $t3, $t2, 31
+	beq $t3, $zero, three
+	nor $t2, $t2, $zero
+	addiu $t2, $t2, 1
+three:
 
-	blt $t0, $zero, make_positive_one
-	j one
-	make_positive_one:
-	nor $t4, $t0, $zero
-	addi $t0, $t4, 1
-	one:
 
-	blt $t1, $zero, make_positive_two
-	j two
-	make_positive_two:
-	nor $t4, $t1, 0
-	addi $t1, $t4, 1
-	two:
+	move $t4, $t0
+	slt $t5, $zero, four
+	move $t4, $t1
+four:
+	slt $t5, $t4, $t2
+	beq $t5, $zero, five
+	move $t4, $t2
 
-	blt $t2, $zero, make_positive_three
-	j three
-	make_positive_three:
-	nor $t4, $t2, 0
-	addi $t2, $t4, 1
-	three:
+five:
+	
 
-	move $a0, $t0
-	blt $a0, $t1, a
-	j aa
-	a:
-	move $a0, $t1
-	aa:
-
-	blt $a0, $t2, b
-	j bb
-	b:
-	move $a0, $t2
-	bb:
-
-	move $t5, $a0
-	li $v0, 4
+	$li v0, 4
 	la $a0, max
 	syscall
 
 	li $v0, 1
-	move $a0, $t5
+	move $a0, $t4
 	syscall
 
 	li $v0, 4
