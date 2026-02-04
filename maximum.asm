@@ -9,9 +9,9 @@
 .data
 	# TODO: Complete these incomplete declarations / initializations
 
-	prompt: .asciiz "Enter the next number:\n"
+	prompt:  .asciiz "Enter the next number:\n"
     newline: .asciiz "\n"
-	max: .asciiz "Maximum: "
+	max:     .asciiz "Maximum: "
 
 #Text Area (i.e. instructions/code directive)
 .text
