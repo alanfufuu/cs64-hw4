@@ -9,7 +9,7 @@
 .data
 	# TODO: Complete these incomplete declarations / initializations
 
-	prompt:  .asciiz "Enter the next number:\n"
+	prompt:  .asciiz "Enter number:\n"
     newline: .asciiz "\n"
 	max:     .asciiz "Maximum: "
 
@@ -38,7 +38,7 @@ main:
 	move $t1, $v0
 
 	li $v0, 4
-	la $a0, newline
+	la $a0, prompt
 	syscall
 
 	li $v0, 5
@@ -49,7 +49,7 @@ main:
 	blt $t0, $zero, make_positive_one
 	j one
 	make_positive_one:
-	nor $t4, $t0, 0
+	nor $t4, $t0, $zero
 	addi $t0, $t4, 1
 	one:
 
