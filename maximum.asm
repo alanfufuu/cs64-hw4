@@ -47,9 +47,9 @@ main:
 
 	srl $t3, $t0, 31
 	beq $t3, $zero, one
-	nor $t0, $t0, zero
+	nor $t0, $t0, $zero
 	addiu $t0, $t0, 1
-	
+
 one:
 	srl $t3, $t1, 31
 	beq $t3, $zero, two
@@ -64,7 +64,8 @@ three:
 
 
 	move $t4, $t0
-	slt $t5, $zero, four
+	slt $t5, $t4, $t1
+	beq $t5, $zero, four
 	move $t4, $t1
 four:
 	slt $t5, $t4, $t2
@@ -74,7 +75,7 @@ four:
 five:
 	
 
-	$li v0, 4
+	li $v0, 4
 	la $a0, max
 	syscall
 
